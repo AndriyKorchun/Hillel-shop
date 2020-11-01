@@ -1,13 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ReactComponent as CrownIcon } from '../../assets/crown.svg';
 import './header.styles.scss';
 import CartIcon from '../cart-icon/cart-icon.component';
 
 const Header = () => (
   <header className="header">
-    <a href="#" className="logo-container">
+    <Link to="/" className="logo-container">
       <CrownIcon />
-    </a>
+    </Link>
 
     <div className="options">
       <nav>
