@@ -1,24 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ReactComponent as CrownIcon } from '../../assets/crown.svg';
 import './header.styles.scss';
+import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 import CartIcon from '../cart-icon/cart-icon.component';
 
-const Header = () => (
-  <header className="header">
-    <Link to="/" className="logo-container">
-      <CrownIcon />
-    </Link>
+const Header = () => {
+  const [isVisible, setVisible] = useState(false);
 
-    <div className="options">
-      <nav>
-        <a href="#" className="option">Shop</a>
-        <a href="#" className="option">Sign in</a>
-      </nav>
+  return (
+    <header className="header">
+      <Link to="/" className="logo-container">
+        <CrownIcon />
+      </Link>
 
-      <CartIcon />
-    </div>
-  </header>
-);
+      <div className="options">
+        <nav>
+          <Link to="/shop" className="option">Shop</Link>
+          <Link to="/auth" className="option">Sign in</Link>
+        </nav>
+
+        <CartIcon onToggle={() => setVisible(!isVisible)}/>
+
+        { isVisible && <CartDropdown /> }
+      </div>
+    </header>
+  );
+};
 
 export default Header;
