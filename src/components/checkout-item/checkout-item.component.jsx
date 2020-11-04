@@ -1,5 +1,7 @@
 import React from 'react';
 import './checkout-item.styles.scss';
+import { useDispatch } from 'react-redux';
+import { addItemToCart, deleteCartItem, removeCartItem } from '../../redux/cart/cart.actions';
 
 const CheckoutItem = ({ item }) => {
   const {
@@ -9,9 +11,11 @@ const CheckoutItem = ({ item }) => {
     quantity,
   } = item;
 
-  const clearItem = (cartItem) => {};
-  const addItem = (cartItem) => {};
-  const removeItem = (cartItem) => {};
+  const dispatch = useDispatch();
+
+  const clearItem = (cartItem) => dispatch(deleteCartItem(cartItem.id));
+  const addItem = (cartItem) => dispatch(addItemToCart(cartItem));
+  const removeItem = (cartItem) => dispatch(removeCartItem(cartItem));
 
   return (
     <div className="checkout-item">

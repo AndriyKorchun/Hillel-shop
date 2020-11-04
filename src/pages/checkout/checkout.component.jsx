@@ -1,10 +1,14 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import CheckoutItem from '../../components/checkout-item/checkout-item.component';
 import './checkout.styles.scss';
+import { selectCartItems, selectCartTotalAmount } from '../../redux/cart/cart.selectors';
 
 const CheckoutPage = () => {
-  const cartItems = [];
-  const cartItemsTotal = 0;
+  const cartItems = useSelector(selectCartItems);
+  const totalAmount = useSelector(selectCartTotalAmount);
+
+  console.log('rerender!');
 
   return (
     <section className="checkout-page">
@@ -20,7 +24,7 @@ const CheckoutPage = () => {
 
       <div className="total">
         Total: $
-        { cartItemsTotal }
+        { totalAmount }
       </div>
     </section>
   );
